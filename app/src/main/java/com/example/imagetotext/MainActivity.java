@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,6 +24,8 @@ import android.provider.MediaStore;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
     EditText mResultEt;
     ImageView mPreviewIv;
+    Button cal_btn;
+    Button translate_btn;
+    Button search_btn;
     private static final int CAMERA_REQUEST_CODE=200;
     private static final int STORAGE_REQUEST_CODE=400;
     private static final int IMAGE_PICK_GALLERY_CODE=1000;
@@ -53,11 +59,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar=getSupportActionBar();
-        actionBar.setSubtitle("Click+button to insert Image");
+        actionBar.setSubtitle("Click img button to insert Image");
         mResultEt=findViewById(R.id.resultEt);
         mPreviewIv=findViewById(R.id.imageIv);
+        cal_btn=findViewById(R.id.button);
+        translate_btn=findViewById(R.id.button2);
+        search_btn=findViewById(R.id.button3);
+
         cameraPermission=new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+        cal_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                calculate();
+            }
+        });
+
+        translate_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                translate();
+            }
+        });
+
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                search();
+            }
+        });
     }
 
     @Override
@@ -217,5 +248,24 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+
+    public void calculate() {
+        return;
+    }
+
+
+    public void translate() {
+
+
+        return;
+    }
+
+    public void search() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_WEB_SEARCH);
+        intent.putExtra(SearchManager.QUERY, mResultEt.getText().toString() );
+        startActivity(intent);
     }
 }
