@@ -21,6 +21,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.lang.annotation.Inherited;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     Button translate_btn;
     Button search_btn;
     Button speak_btn;
+    TextToSpeech textToSpeech;
 
     private static final int CAMERA_REQUEST_CODE=200;
     private static final int STORAGE_REQUEST_CODE=400;
@@ -72,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
         cameraPermission=new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
+        textToSpeech = new TextToSpeech( MainActivity.this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR){
+                    textToSpeech.setLanguage( Locale.ENGLISH );
+                }
+            }
+        } );
+
         cal_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
@@ -96,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
         speak_btn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                speak();
+                String text = mResultEt.getText().toString();
+
+                textToSpeech.speak( text, TextToSpeech.QUEUE_FLUSH, null );
             }
         } );
     }
@@ -279,8 +293,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void speak(){
-        return;
+    @Override
+    protected void onPause() {
+        if(textToSpeech != null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onPause();
     }
 
 }
