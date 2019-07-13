@@ -67,11 +67,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar=getSupportActionBar();
-        actionBar.setSubtitle("Click img button to insert Image");
+        actionBar.setSubtitle("Click Image button to insert Image");
         mResultEt=findViewById(R.id.resultEt);
         mPreviewIv=findViewById(R.id.imageIv);
-        btn = (Button) findViewById(R.id.calbutton);
-        cal_btn=findViewById(R.id.button);
+        cal_btn=findViewById(R.id.calbutton);
         search_btn=findViewById(R.id.button3);
         speak_btn=findViewById( R.id.button4 );
         drum_btn=findViewById( R.id.btn_drum_pad );
@@ -87,13 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } );
-
-        cal_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view){
-                calculate();
-            }
-        });
 
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
                     //문자 사이 공백 없앤 후 array로 넣어줌.
 
 
-                    btn.setOnClickListener(new View.OnClickListener() {
+                    cal_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             if (array.length > 2) {
@@ -348,6 +340,16 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
+
+                    speak_btn.setOnClickListener( new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String text = mResultEt.getText().toString();
+
+                            textToSpeech.speak( text, TextToSpeech.QUEUE_FLUSH, null );
+                        }
+                    } );
+
                 }
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
