@@ -207,8 +207,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
                 }
                 else {
-//                    final String itemGet[]=new String[100];
-
+//
                     String itemGet = "";
                     Frame frame=new Frame.Builder().setBitmap(bitmap).build();
                     SparseArray<TextBlock> items=recognizer.detect(frame);
@@ -216,36 +215,50 @@ public class MainActivity extends AppCompatActivity {
                     for (int i=0; i<items.size(); i++){
                         TextBlock myItem=items.valueAt(i);
                         sb.append(myItem.getValue());
-//                        itemGet[i]=myItem.getValue();
-                        System.out.println(myItem.getValue());
-                        itemGet.concat(myItem.getValue());
+
                     }
 
                     System.out.println(sb);
-                    System.out.println("/##########################################");
+                    itemGet=sb.toString();
                     System.out.println(itemGet);
-                    System.out.println("//////////////////////////////////////////////");
+                    itemGet=itemGet.replaceAll(" ","");
+                    final String[] array=itemGet.split("");
                     mResultEt.setText(sb.toString());
 
-                    //sb 제대로 들어감,
+                    //문자 사이 공백 없앤 후 array로 넣어줌.
 
-//                    btn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            if(itemGet.length>3){
-//                                String first=itemGet[0];
-//                                String signal=itemGet[1];
-//                                String second=itemGet[2];
-//                                int a= Integer.parseInt(first);
-//                                int b=Integer.parseInt(second);
-//                                Calculate(a,b,signal);
-//                                itemGet[3]="=";
-//                                String theresult=Integer.toString(calresult);
-//                                itemGet[4]=theresult;
-//                                mResultEt.setText(itemGet.toString());}
-//
-//                        }
-//                    });
+
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(array.length>2){
+
+                                String first=array[1];
+                                String signal=array[2];
+                                String second=array[3];
+
+
+                                int a= Integer.parseInt(first);
+                                int b=Integer.parseInt(second);
+                                Calculate(a,b,signal);
+                                String theresult=Integer.toString(calresult);
+//                                System.out.println(array.toString());
+                                //이부분 수정!!
+                                String str="";
+                                System.out.println(str);
+                                str =str+first;
+                                System.out.println(str);
+                                str =str+signal;
+                                System.out.println(str);
+                                str =str+second;
+                                System.out.println(str);
+                                str =str+"=";
+                                str = str+theresult;
+
+                                mResultEt.setText(str);}
+
+                        }
+                    });
                 }
             }
             else if (resultCode==CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
