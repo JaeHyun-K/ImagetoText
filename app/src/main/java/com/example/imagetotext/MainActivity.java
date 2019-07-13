@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     EditText mResultEt;
     ImageView mPreviewIv;
     Button cal_btn;
-    Button translate_btn;
     Button search_btn;
     Button speak_btn;
     Button drum_btn;
@@ -69,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         mResultEt=findViewById(R.id.resultEt);
         mPreviewIv=findViewById(R.id.imageIv);
         cal_btn=findViewById(R.id.button);
-        translate_btn=findViewById(R.id.button2);
         search_btn=findViewById(R.id.button3);
         speak_btn=findViewById( R.id.button4 );
         drum_btn=findViewById( R.id.btn_drum_pad );
@@ -90,13 +88,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 calculate();
-            }
-        });
-
-        translate_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view){
-                translate();
             }
         });
 
@@ -286,13 +277,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void calculate() {
-        return;
-    }
-
-
-    public void translate() {
-
-
         return;
     }
 
