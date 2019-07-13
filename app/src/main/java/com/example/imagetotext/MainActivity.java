@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     Button cal_btn;
     Button translate_btn;
     Button search_btn;
+    Button speak_btn;
+
     private static final int CAMERA_REQUEST_CODE=200;
     private static final int STORAGE_REQUEST_CODE=400;
     private static final int IMAGE_PICK_GALLERY_CODE=1000;
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         cal_btn=findViewById(R.id.button);
         translate_btn=findViewById(R.id.button2);
         search_btn=findViewById(R.id.button3);
+        speak_btn=findViewById( R.id.button4 );
 
         cameraPermission=new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -89,6 +92,13 @@ public class MainActivity extends AppCompatActivity {
                 search();
             }
         });
+
+        speak_btn.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                speak();
+            }
+        } );
     }
 
     @Override
@@ -268,4 +278,9 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(SearchManager.QUERY, mResultEt.getText().toString() );
         startActivity(intent);
     }
+
+    public void speak(){
+        return;
+    }
+
 }
