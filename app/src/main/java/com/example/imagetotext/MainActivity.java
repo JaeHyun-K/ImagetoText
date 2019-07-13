@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     Button translate_btn;
     Button search_btn;
     Button speak_btn;
+    Button drum_btn;
     TextToSpeech textToSpeech;
 
     private static final int CAMERA_REQUEST_CODE=200;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         translate_btn=findViewById(R.id.button2);
         search_btn=findViewById(R.id.button3);
         speak_btn=findViewById( R.id.button4 );
+        drum_btn=findViewById( R.id.btn_drum_pad );
 
         cameraPermission=new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -113,6 +115,14 @@ public class MainActivity extends AppCompatActivity {
                 textToSpeech.speak( text, TextToSpeech.QUEUE_FLUSH, null );
             }
         } );
+
+        drum_btn.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDrumPadActivity();
+            }
+        } );
+
     }
 
     @Override
@@ -290,6 +300,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_WEB_SEARCH);
         intent.putExtra(SearchManager.QUERY, mResultEt.getText().toString() );
+        startActivity(intent);
+    }
+
+    public void openDrumPadActivity(){
+        Intent intent = new Intent(this, DrumPadActivity.class);
         startActivity(intent);
     }
 
