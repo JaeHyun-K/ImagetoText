@@ -23,6 +23,8 @@ import android.provider.MediaStore;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -34,16 +36,19 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.lang.annotation.Inherited;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-
+    public Integer calresult;
     EditText mResultEt;
     ImageView mPreviewIv;
+    Button btn;
     private static final int CAMERA_REQUEST_CODE=200;
     private static final int STORAGE_REQUEST_CODE=400;
     private static final int IMAGE_PICK_GALLERY_CODE=1000;
     private static final int IMAGE_PICK_CAMERA_CODE=1001;
-
     String cameraPermission[];
     String storagePermission[];
     Uri image_uri;
@@ -53,11 +58,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar=getSupportActionBar();
-        actionBar.setSubtitle("Click+button to insert Image");
+        actionBar.setSubtitle("Click Image button to insert Image");
         mResultEt=findViewById(R.id.resultEt);
         mPreviewIv=findViewById(R.id.imageIv);
         cameraPermission=new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+        btn=(Button) findViewById(R.id.calbutton);
     }
 
     @Override
@@ -200,15 +207,45 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
                 }
                 else {
+//                    final String itemGet[]=new String[100];
+
+                    String itemGet = "";
                     Frame frame=new Frame.Builder().setBitmap(bitmap).build();
                     SparseArray<TextBlock> items=recognizer.detect(frame);
                     StringBuilder sb=new StringBuilder();
                     for (int i=0; i<items.size(); i++){
                         TextBlock myItem=items.valueAt(i);
                         sb.append(myItem.getValue());
-                        sb.append("\n");
+//                        itemGet[i]=myItem.getValue();
+                        System.out.println(myItem.getValue());
+                        itemGet.concat(myItem.getValue());
                     }
+
+                    System.out.println(sb);
+                    System.out.println("/##########################################");
+                    System.out.println(itemGet);
+                    System.out.println("//////////////////////////////////////////////");
                     mResultEt.setText(sb.toString());
+
+                    //sb 제대로 들어감,
+
+//                    btn.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            if(itemGet.length>3){
+//                                String first=itemGet[0];
+//                                String signal=itemGet[1];
+//                                String second=itemGet[2];
+//                                int a= Integer.parseInt(first);
+//                                int b=Integer.parseInt(second);
+//                                Calculate(a,b,signal);
+//                                itemGet[3]="=";
+//                                String theresult=Integer.toString(calresult);
+//                                itemGet[4]=theresult;
+//                                mResultEt.setText(itemGet.toString());}
+//
+//                        }
+//                    });
                 }
             }
             else if (resultCode==CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
@@ -217,5 +254,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    private void Calculate(Integer a, Integer b, String sign){
+        String add="+";
+        String sub="-";
+        String mul="*";
+        String div="/";
+        if(sign.equals(add)){
+            calresult=a+b;
+        }
+        else if (sign.equals(sub)){
+            calresult=a-b;
+        }
+        else if(sign.equals(mul)){
+            calresult=a*b;
+        }
+        else if (sign.equals(div)){
+            calresult=a/b;
+        }
+        else{
+            Toast.makeText(this,"Cannot calculate",Toast.LENGTH_SHORT).show();
+        }
+        //결과값을 어떻게 return 할것인가?
+        return ;
     }
 }

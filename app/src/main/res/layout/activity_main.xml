@@ -64,6 +64,12 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calculate"
+                android:id="@+id/calbutton"
+                android:backgroundTint="#E9F7FF"/>
         </LinearLayout>
     </ScrollView>
 
