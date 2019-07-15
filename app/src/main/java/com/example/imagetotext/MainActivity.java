@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     Button search_btn;
     Button speak_btn;
     Button drum_btn;
+    Button game_btn;
     TextToSpeech textToSpeech;
 
     private BackPressHandler backPressHandler;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         search_btn=findViewById(R.id.button3);
         speak_btn=findViewById( R.id.button4 );
         drum_btn=findViewById( R.id.btn_drum_pad );
+        game_btn=findViewById( R.id.btn_game );
 
         cameraPermission=new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -117,6 +119,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openDrumPadActivity();
+            }
+        } );
+
+        game_btn.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openGameActivity();
             }
         } );
 
@@ -407,6 +416,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openDrumPadActivity(){
         Intent intent = new Intent(this, DrumPadActivity.class);
+        startActivity(intent);
+    }
+
+    public void openGameActivity(){
+        Intent intent = new Intent(this, Game.class);
         startActivity(intent);
     }
 
