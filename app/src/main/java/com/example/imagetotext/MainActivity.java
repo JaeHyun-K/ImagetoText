@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     Button speak_btn;
     Button drum_btn;
     Button game_btn;
+    Button battery_btn;
     TextToSpeech textToSpeech;
 
     private BackPressHandler backPressHandler;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         speak_btn=findViewById( R.id.button4 );
         drum_btn=findViewById( R.id.btn_drum_pad );
         game_btn=findViewById( R.id.btn_game );
+        battery_btn=findViewById(R.id.battery_btn);
 
         cameraPermission=new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -128,6 +130,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openGameActivity();
+            }
+        } );
+
+        battery_btn.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openBatteryCheckActivity();
             }
         } );
 
@@ -305,71 +314,59 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             if (array.length > 2) {
-                                String[] fin=new String[3];
-                                String signal = array[2];
-                                fin[1]=array[2];
-                                fin[0]=array[1];
-                                fin[2]=array[3];
+                                System.out.println(array.toString());
+                                if(array[1].equals("G")&&array[2].equals("a")&&array[3].equals("m")&&array[4].equals("e")){openGameActivity();}
+                                else if(array[1].equals("g")&&array[2].equals("a")&&array[3].equals("m")&&array[4].equals("e")){openGameActivity();}
+                                else if (array[1].equals("D")&&array[2].equals("r")&&array[3].equals("u")&&array[4].equals("m")&&array[5].equals("P")&&array[6].equals("a")&&array[7].equals("d")){openDrumPadActivity();}
+                                else if (array[1].equals("d")&&array[2].equals("r")&&array[3].equals("u")&&array[4].equals("m")&&array[5].equals("p")&&array[6].equals("a")&&array[7].equals("d")){openDrumPadActivity();}
+                                else if(array[1].equals("B")&&array[2].equals("a")&&array[3].equals("t")&&array[4].equals("t")&&array[5].equals("t")&&array[6].equals("e")&&array[7].equals("r")&&array[8].equals("y")){openBatteryCheckActivity();}
+                                else if(array[1].equals("b")&&array[2].equals("a")&&array[3].equals("t")&&array[4].equals("t")&&array[5].equals("t")&&array[6].equals("e")&&array[7].equals("r")&&array[8].equals("y")){openBatteryCheckActivity();}
+                                else{String[] fin = new String[3];
+                                    String signal = array[2];
+                                    fin[1] = array[2];
+                                    fin[0] = array[1];
+                                    fin[2] = array[3];
 
-                                int place=2;
-                                if (!signal.equals("+") && !signal.equals("-") && !signal.equals("*") && !signal.equals("/")) {
-                                    for (int i = 1; i < array.length; i++) {
-                                        if (!array[i + 1].equals("+") && !array[i + 1].equals("-") && !array[i + 1].equals("*") && !array[i + 1].equals("/")) {
-                                            String big = array[1];
+                                    int place = 2;
+                                    if (!signal.equals("+") && !signal.equals("-") && !signal.equals("*") && !signal.equals("/")) {
+                                        for (int i = 1; i < array.length; i++) {
+                                            if (!array[i + 1].equals("+") && !array[i + 1].equals("-") && !array[i + 1].equals("*") && !array[i + 1].equals("/")) {
+                                                String big = array[1];
+                                                String small = array[i + 1];
+                                                int b = Integer.parseInt(big);
+                                                int s = Integer.parseInt(small);
+                                                int sim = 10 * b + s;
+                                                String put = Integer.toString(sim);
+                                                array[1] = put;
+                                            } else {
+                                                place = i + 1;
+                                                fin[1] = array[i + 1];
+                                                signal = fin[1];
+                                                break;
+                                            }
+                                        }
+                                        fin[0] = array[1];
+                                    }//합치기 끝.}
+
+                                    if (array.length > place) {//뒤에 오는 수가 여러자리
+
+                                        int leng = array.length;
+                                        for (int i = place + 1; i < leng - 1; i++) {
+                                            String big = array[i];
                                             String small = array[i + 1];
+                                            System.out.println(big);
+                                            System.out.println(small);
                                             int b = Integer.parseInt(big);
                                             int s = Integer.parseInt(small);
                                             int sim = 10 * b + s;
                                             String put = Integer.toString(sim);
-                                            array[1] = put;
-                                            }
-                                        else {
-                                            place=i+1;
-                                            fin[1]=array[i+1];
-                                            signal=fin[1];
-                                            break;
+                                            array[i + 1] = put;
                                         }
+                                        int size = leng - 1;
+                                        fin[2] = array[size];
                                     }
-                                    fin[0]=array[1];
-                                }//합치기 끝.}
-
-                                if (array.length > place) {//뒤에 오는 수가 여러자리
-
-                                    int leng = array.length;
-                                    for (int i = place+1; i < leng - 1; i++) {
-                                        String big = array[i];
-                                        String small = array[i + 1];
-
-                                        int b = Integer.parseInt(big);
-                                        int s = Integer.parseInt(small);
-                                        int sim = 10 * b + s;
-                                        String put = Integer.toString(sim);
-                                        array[i + 1] = put;
-                                    }
-                                    int size = leng - 1;
-                                    fin[2] = array[size];
                                 }
 
-
-                                String first = fin[0];
-                                String second = fin[2];
-
-                                int a = Integer.parseInt(first);
-                                int b = Integer.parseInt(second);
-
-                                Calculate(a, b, signal);
-
-                                String theresult = Integer.toString(calresult);
-
-                                String str = "";
-                                str = str + first;
-                                str = str + signal;
-                                str = str + second;
-                                str = str + "=";
-                                str = str + theresult;
-
-                                mResultEt.setText(str);
-                            }
                 }
             });
 
@@ -419,6 +416,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openBatteryCheckActivity(){
+        Intent intent = new Intent(this, BatteryCheckActivity.class);
+        startActivity(intent);
+    }
     @Override
     protected void onPause() {
         if(textToSpeech != null){
