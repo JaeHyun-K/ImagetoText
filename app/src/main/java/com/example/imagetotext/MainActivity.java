@@ -107,8 +107,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String text = mResultEt.getText().toString();
+                String utteranceId = this.hashCode() + "";
 
-                textToSpeech.speak( text, QUEUE_FLUSH, null );
+                textToSpeech.speak( text, QUEUE_FLUSH, null, utteranceId);
             }
         } );
 
@@ -311,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
                                     fin[0]=array[1];
                                 }//합치기 끝.}
 
-                                if (array.length >place) {//뒤에 오는 수가 여러자리
+                                if (array.length > place) {//뒤에 오는 수가 여러자리
                                     System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                                     System.out.println(place);
                                     System.out.println(array[place]);
@@ -362,9 +363,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             String text = mResultEt.getText().toString();
-                            CharSequence charSequence = text;
+                            String utteranceId = this.hashCode() + "";
 
-                            textToSpeech.speak( charSequence, 0, null, null);
+                            textToSpeech.speak( text, QUEUE_FLUSH, null, utteranceId);
                         }
                     } );
 
