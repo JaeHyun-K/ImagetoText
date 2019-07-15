@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar=getSupportActionBar();
-        actionBar.setSubtitle("Click Image button to insert Image");
+        actionBar.setSubtitle("당신의 버튼을 실행시키세요");
         backPressHandler=new BackPressHandler(this);
         mResultEt=findViewById(R.id.resultEt);
         mPreviewIv=findViewById(R.id.imageIv);
@@ -361,16 +361,46 @@ public class MainActivity extends AppCompatActivity {
                                             int sim = 10 * b + s;
                                             String put = Integer.toString(sim);
                                             array[i + 1] = put;
+
                                         }
                                         int size = leng - 1;
                                         fin[2] = array[size];
                                     }
+                                    String first = fin[0];
+                                    String second = fin[2];
+                                    int a = Integer.parseInt(first);
+                                    int b = Integer.parseInt(second);
+                                    System.out.println(signal);
+                                    Calculate(a, b, signal);
+                                    System.out.println(calresult);
+                                    String theresult = Integer.toString(calresult);
+                                    System.out.println(theresult);
+
+                                    String str = "";
+                                    str = str + first;
+                                    str = str + signal;
+                                    str = str + second;
+                                    str = str + "=";
+                                    str = str + theresult;
+
+                                    mResultEt.setText(str);
                                 }
+                            }
+                        }
+                    });
+
+                    speak_btn.setOnClickListener( new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String text = mResultEt.getText().toString();
+                            String utteranceId = this.hashCode() + "";
+
+                            textToSpeech.speak( text, QUEUE_FLUSH, null, utteranceId);
+                        }
+                    } );
 
                 }
-            });
 
-                }
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
                 Toast.makeText(this, "" + error, Toast.LENGTH_SHORT).show();
