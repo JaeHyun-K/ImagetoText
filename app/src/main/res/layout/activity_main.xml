@@ -113,7 +113,7 @@
                     android:layout_height="30dp"
                     android:text="Drum Pad"
                     android:background="@drawable/rounded_btn"
-                    android:layout_marginLeft="6dp"
+                    android:layout_marginLeft="3dp"
                      android:layout_marginRight="6dp"
                     android:layout_marginTop="6dp"
                     android:id="@+id/btn_drum_pad"/>
@@ -123,7 +123,7 @@
                     android:layout_height="30dp"
                     android:text="Battery"
                     android:background="@drawable/rounded_btn"
-                    android:layout_marginLeft="6dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_marginRight="6dp"
                     android:layout_marginTop="6dp"
                     android:id="@+id/battery_btn"/>
@@ -134,7 +134,7 @@
                     android:layout_height="30dp"
                     android:text="Play Game"
                     android:background="@drawable/rounded_btn"
-                    android:layout_marginLeft="6dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_marginRight="6dp"
                     android:layout_marginTop="6dp"
                     android:id="@+id/btn_game"/>
