@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     Button speak_btn;
     Button drum_btn;
     Button game_btn;
+    Button battery_btn;
     TextToSpeech textToSpeech;
 
     private BackPressHandler backPressHandler;
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         speak_btn=findViewById( R.id.button4 );
         drum_btn=findViewById( R.id.btn_drum_pad );
         game_btn=findViewById( R.id.btn_game );
+        battery_btn=findViewById(R.id.battery_btn);
 
         cameraPermission=new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -127,6 +129,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openGameActivity();
+            }
+        } );
+
+        battery_btn.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openBatteryCheckActivity();
             }
         } );
 
@@ -425,6 +434,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openBatteryCheckActivity(){
+        Intent intent = new Intent(this, BatteryCheckActivity.class);
+        startActivity(intent);
+    }
     @Override
     protected void onPause() {
         if(textToSpeech != null){

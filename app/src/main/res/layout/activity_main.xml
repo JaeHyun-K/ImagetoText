@@ -118,6 +118,15 @@
                     android:layout_marginTop="6dp"
                     android:id="@+id/btn_drum_pad"/>
 
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:text="Battery"
+                    android:background="@drawable/rounded_btn"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="6dp"
+                    android:id="@+id/battery_btn"/>
 
 
                 <Button
