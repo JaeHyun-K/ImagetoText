@@ -44,6 +44,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static android.speech.tts.TextToSpeech.QUEUE_ADD;
 import static android.speech.tts.TextToSpeech.QUEUE_FLUSH;
 
 public class MainActivity extends AppCompatActivity {
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 String text = mResultEt.getText().toString();
                 String utteranceId = this.hashCode() + "";
 
-                textToSpeech.speak( text, QUEUE_FLUSH, null, utteranceId);
+                textToSpeech.speak( text, QUEUE_FLUSH, null);
             }
         } );
 
@@ -289,6 +290,16 @@ public class MainActivity extends AppCompatActivity {
 
                     //문자 사이 공백 없앤 후 array로 넣어줌.
 
+                    speak_btn.setOnClickListener( new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String text = mResultEt.getText().toString();
+                            String utteranceId = this.hashCode() + "";
+
+                            textToSpeech.speak( text, QUEUE_FLUSH, null);
+                        }
+                    } );
+
 
                     cal_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -323,16 +334,12 @@ public class MainActivity extends AppCompatActivity {
                                 }//합치기 끝.}
 
                                 if (array.length > place) {//뒤에 오는 수가 여러자리
-                                    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                                    System.out.println(place);
-                                    System.out.println(array[place]);
+
                                     int leng = array.length;
                                     for (int i = place+1; i < leng - 1; i++) {
                                         String big = array[i];
                                         String small = array[i + 1];
-                                        System.out.println(big);
-                                        System.out.println(small);
-                                        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
                                         int b = Integer.parseInt(big);
                                         int s = Integer.parseInt(small);
                                         int sim = 10 * b + s;
@@ -346,16 +353,13 @@ public class MainActivity extends AppCompatActivity {
 
                                 String first = fin[0];
                                 String second = fin[2];
-                                System.out.println(first);
-                                System.out.println(second);
-                                System.out.println(".....................................");
+
                                 int a = Integer.parseInt(first);
                                 int b = Integer.parseInt(second);
-                                System.out.println(signal);
+
                                 Calculate(a, b, signal);
-                                System.out.println(calresult);
+
                                 String theresult = Integer.toString(calresult);
-                                System.out.println(theresult);
 
                                 String str = "";
                                 str = str + first;
@@ -368,16 +372,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                 }
             });
-
-                    speak_btn.setOnClickListener( new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String text = mResultEt.getText().toString();
-                            String utteranceId = this.hashCode() + "";
-
-                            textToSpeech.speak( text, QUEUE_FLUSH, null, utteranceId);
-                        }
-                    } );
 
                 }
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
