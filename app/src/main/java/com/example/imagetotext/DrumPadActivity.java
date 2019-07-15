@@ -31,7 +31,7 @@ public class DrumPadActivity extends AppCompatActivity {
         sound3 = soundPool.load(getApplicationContext(), R.raw.sound3,1);
         sound4 = soundPool.load(getApplicationContext(), R.raw.sound4,1);
         sound5 = soundPool.load(getApplicationContext(), R.raw.sound5,1);
-        sound6 = soundPool.load(getApplicationContext(), R.raw.sound6,1);
+        sound6 = soundPool.load(getApplicationContext(), R.raw.sound00,1);
         sound7 = soundPool.load(getApplicationContext(), R.raw.sound7,1);
         sound8 = soundPool.load(getApplicationContext(), R.raw.sound8,1);
         sound9 = soundPool.load(getApplicationContext(), R.raw.sound9,1);
@@ -52,27 +52,27 @@ public class DrumPadActivity extends AppCompatActivity {
     }
 
     public void playSound4 (View v) {
-        soundPool.play( sound4,1.0f,1.0f,0,0,10f );
+        soundPool.play( sound4,2.0f,2.0f,0,0,10f );
     }
 
     public void playSound5 (View v) {
-        soundPool.play( sound5,1.0f,1.0f,0,0,10f );
+        soundPool.play( sound5,2.0f,2.0f,0,0,10f );
     }
 
     public void playSound6 (View v) {
-        soundPool.play( sound6,1.0f,1.0f,0,0,10f );
+        soundPool.play( sound6,5.0f,5.0f,0,0,10f );
     }
 
     public void playSound7 (View v) {
-        soundPool.play( sound7,1.0f,1.0f,0,0,10f );
+        soundPool.play( sound7,2.0f,2.0f,0,0,10f );
     }
 
     public void playSound8 (View v) {
-        soundPool.play( sound8,1.0f,1.0f,0,0,10f );
+        soundPool.play( sound8,3.0f,3.0f,0,0,10f );
     }
 
     public void playSound9 (View v) {
-        soundPool.play( sound9,1.0f,1.0f,0,0,10f );
+        soundPool.play( sound9,3.0f,3.0f,0,0,10f );
     }
 
 }

@@ -18,12 +18,14 @@
             android:background="@drawable/button_blue"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/sound1"
             android:onClick="playSound1"/>
         <Button
             android:background="@drawable/button_blue"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/sound2"
             android:onClick="playSound2"/>
         <Button
@@ -43,12 +45,14 @@
             android:background="@drawable/button_purple"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/sound4"
             android:onClick="playSound4"/>
         <Button
             android:background="@drawable/button_orange"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/sound5"
             android:onClick="playSound5"/>
         <Button
@@ -68,12 +72,14 @@
             android:background="@drawable/button_green"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/sound7"
             android:onClick="playSound7"/>
         <Button
             android:background="@drawable/button_green"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/sound8"
             android:onClick="playSound8"/>
         <Button

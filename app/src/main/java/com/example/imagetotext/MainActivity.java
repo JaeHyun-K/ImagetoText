@@ -43,6 +43,8 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static android.speech.tts.TextToSpeech.QUEUE_FLUSH;
+
 public class MainActivity extends AppCompatActivity {
     public Integer calresult;
     EditText mResultEt;
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String text = mResultEt.getText().toString();
 
-                textToSpeech.speak( text, TextToSpeech.QUEUE_FLUSH, null );
+                textToSpeech.speak( text, QUEUE_FLUSH, null );
             }
         } );
 
@@ -338,15 +340,16 @@ public class MainActivity extends AppCompatActivity {
 
                                 mResultEt.setText(str);
                             }
-                        }
-                    });
+                }
+            });
 
                     speak_btn.setOnClickListener( new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             String text = mResultEt.getText().toString();
+                            CharSequence charSequence = text;
 
-                            textToSpeech.speak( text, TextToSpeech.QUEUE_FLUSH, null );
+                            textToSpeech.speak( charSequence, 0, null, null);
                         }
                     } );
 
@@ -356,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "" + error, Toast.LENGTH_SHORT).show();
 
             }
-        }
+    }
     }
 
     private void Calculate(Integer a, Integer b, String sign) {
