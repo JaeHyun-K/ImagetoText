@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     Button drum_btn;
     TextToSpeech textToSpeech;
 
+    private BackPressHandler backPressHandler;
     private static final int CAMERA_REQUEST_CODE=200;
     private static final int STORAGE_REQUEST_CODE=400;
     private static final int IMAGE_PICK_GALLERY_CODE=1000;
@@ -63,11 +64,17 @@ public class MainActivity extends AppCompatActivity {
     Uri image_uri;
 
     @Override
+    public void onBackPressed(){
+        backPressHandler.onBackPressed();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar=getSupportActionBar();
         actionBar.setSubtitle("Click Image button to insert Image");
+        backPressHandler=new BackPressHandler(this);
         mResultEt=findViewById(R.id.resultEt);
         mPreviewIv=findViewById(R.id.imageIv);
         cal_btn=findViewById(R.id.calbutton);
@@ -111,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         } );
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
