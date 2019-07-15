@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
                                             int s = Integer.parseInt(small);
                                             int sim = 10 * b + s;
                                             String put = Integer.toString(sim);
-                                            array[i] = put;
+                                            array[1] = put;
                                             }
                                         else {
                                             place=i+1;
@@ -320,12 +320,14 @@ public class MainActivity extends AppCompatActivity {
 
                                 String first = fin[0];
                                 String second = fin[2];
+                                System.out.println(first);
+                                System.out.println(second);
+                                System.out.println(".....................................");
                                 int a = Integer.parseInt(first);
                                 int b = Integer.parseInt(second);
                                 System.out.println(signal);
                                 Calculate(a, b, signal);
                                 System.out.println(calresult);
-                                System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
                                 String theresult = Integer.toString(calresult);
                                 System.out.println(theresult);
 
