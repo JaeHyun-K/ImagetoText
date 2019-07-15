@@ -21,16 +21,16 @@
     <!-- background color -->
     <color name="backgroundColor">#21222c</color>
 
-    <color name="brown50">#EFEBE9</color>
-    <color name="brown100">#D7CCC8</color>
-    <color name="brown200">#BCAAA4</color>
-    <color name="brown300">#A1887F</color>
-    <color name="brown400">#8D6E63</color>
-    <color name="brown500">#795548</color>
-    <color name="brown600">#6D4C41</color>
-    <color name="brown700">#5D4037</color>
-    <color name="brown800">#4E342E</color>
-    <color name="brown900">#3E2723</color>
-    <color name="brown900_50">#7F3E2723</color>
+    <color name="brown50">#E3F2FD</color>
+    <color name="brown100">#BBDEFB</color>
+    <color name="brown200">#90CAF9</color>
+    <color name="brown300">#64B5F6</color>
+    <color name="brown400">#42A5F5</color>
+    <color name="brown500">#2196F3</color>
+    <color name="brown600">#1E88E5</color>
+    <color name="brown700">#1976D2</color>
+    <color name="brown800">#1565C0</color>
+    <color name="brown900">#0D47A1</color>
+    <color name="brown900_50">#82B1FF</color>
 
 </resources>
