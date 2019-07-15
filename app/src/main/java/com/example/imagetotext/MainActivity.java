@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
                                 fin[0]=array[1];
                                 fin[2]=array[3];
 
-                                int place=4;
+                                int place=2;
                                 if (!signal.equals("+") && !signal.equals("-") && !signal.equals("*") && !signal.equals("/")) {
                                     for (int i = 1; i < array.length; i++) {
                                         if (!array[i + 1].equals("+") && !array[i + 1].equals("-") && !array[i + 1].equals("*") && !array[i + 1].equals("/")) {
@@ -310,11 +310,16 @@ public class MainActivity extends AppCompatActivity {
                                 }//합치기 끝.}
 
                                 if (array.length >place) {//뒤에 오는 수가 여러자리
+                                    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                                    System.out.println(place);
+                                    System.out.println(array[place]);
                                     int leng = array.length;
                                     for (int i = place+1; i < leng - 1; i++) {
                                         String big = array[i];
                                         String small = array[i + 1];
-
+                                        System.out.println(big);
+                                        System.out.println(small);
+                                        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                                         int b = Integer.parseInt(big);
                                         int s = Integer.parseInt(small);
                                         int sim = 10 * b + s;
