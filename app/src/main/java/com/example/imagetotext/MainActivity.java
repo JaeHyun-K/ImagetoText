@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     Button drum_btn;
     TextToSpeech textToSpeech;
 
+    private BackPressHandler backPressHandler;
     private static final int CAMERA_REQUEST_CODE=200;
     private static final int STORAGE_REQUEST_CODE=400;
     private static final int IMAGE_PICK_GALLERY_CODE=1000;
@@ -65,11 +66,17 @@ public class MainActivity extends AppCompatActivity {
     Uri image_uri;
 
     @Override
+    public void onBackPressed(){
+        backPressHandler.onBackPressed();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar=getSupportActionBar();
         actionBar.setSubtitle("Click Image button to insert Image");
+        backPressHandler=new BackPressHandler(this);
         mResultEt=findViewById(R.id.resultEt);
         mPreviewIv=findViewById(R.id.imageIv);
         cal_btn=findViewById(R.id.calbutton);
@@ -113,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         } );
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -281,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
                                 fin[0]=array[1];
                                 fin[2]=array[3];
 
-                                int place=4;
+                                int place=2;
                                 if (!signal.equals("+") && !signal.equals("-") && !signal.equals("*") && !signal.equals("/")) {
                                     for (int i = 1; i < array.length; i++) {
                                         if (!array[i + 1].equals("+") && !array[i + 1].equals("-") && !array[i + 1].equals("*") && !array[i + 1].equals("/")) {
@@ -291,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                                             int s = Integer.parseInt(small);
                                             int sim = 10 * b + s;
                                             String put = Integer.toString(sim);
-                                            array[i] = put;
+                                            array[1] = put;
                                             }
                                         else {
                                             place=i+1;
@@ -304,11 +312,16 @@ public class MainActivity extends AppCompatActivity {
                                 }//합치기 끝.}
 
                                 if (array.length >place) {//뒤에 오는 수가 여러자리
+                                    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                                    System.out.println(place);
+                                    System.out.println(array[place]);
                                     int leng = array.length;
                                     for (int i = place+1; i < leng - 1; i++) {
                                         String big = array[i];
                                         String small = array[i + 1];
-
+                                        System.out.println(big);
+                                        System.out.println(small);
+                                        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                                         int b = Integer.parseInt(big);
                                         int s = Integer.parseInt(small);
                                         int sim = 10 * b + s;
@@ -322,12 +335,14 @@ public class MainActivity extends AppCompatActivity {
 
                                 String first = fin[0];
                                 String second = fin[2];
+                                System.out.println(first);
+                                System.out.println(second);
+                                System.out.println(".....................................");
                                 int a = Integer.parseInt(first);
                                 int b = Integer.parseInt(second);
                                 System.out.println(signal);
                                 Calculate(a, b, signal);
                                 System.out.println(calresult);
-                                System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
                                 String theresult = Integer.toString(calresult);
                                 System.out.println(theresult);
 
